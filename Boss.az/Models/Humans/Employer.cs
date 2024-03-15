@@ -1,19 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Boss.az.Models.Other_Models;
 using System.Numerics;
-using System.Xml.Linq;
 using System.Text.RegularExpressions;
+
 namespace Boss.az.Models.Humans;
 
-public class Worker
+public class Employer
 {
     public Guid id { get; set; }
     private string _name;
 
-	public string Name
-	{
-		get { return _name; }
-		set { if (value.Length < 3 && value.Length > 19) throw new Exception("name length must [3;19]"); _name = value; }
-	}
+    public string Name
+    {
+        get { return _name; }
+        set { if (value.Length < 3 && value.Length > 19) throw new Exception("name length must [3;19]"); _name = value; }
+    }
 
     private string _surname;
 
@@ -45,7 +45,6 @@ public class Worker
         get { return _age; }
         set { if (_age <= 18 && _age >= 55) throw new Exception("Age must [18;55]"); else _age = value; }
     }
-    public CV cv{ get; set; }
 
     private string _email;
 
@@ -55,33 +54,29 @@ public class Worker
         set { if (Regex.IsMatch(value, "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b\r\n")) _email = value; else throw new Exception("Email is wrong"); }
     }
 
+    public List<Vacancie> vacancies { get; set; }
 
-    public Worker(string name, string surname, string sheher, string phone, int age, CV cv, string email) : this()
+    public Employer(string name, string surname, string sheher, string phone, int age, string email, List<Vacancie> vacancies)
     {
-
-        Name = name;
-        Surname = surname;
-        Sheher = sheher;
-        Phone = phone;
-        Age = age;
-        this.cv = cv;
-        Email = email;
+        id = Guid.NewGuid(); 
+        _name = name;
+        _surname = surname;
+        _sheher = sheher;
+        _phone = phone;
+        _age = age;
+        _email = email;
+        this.vacancies = vacancies;
     }
 
-    public Worker()
+    public Employer()
     {
-        id = Guid.NewGuid();
-        _age = 0;
+        id = Guid.NewGuid(); 
         _name = string.Empty;
+        _surname = string.Empty;
         _sheher = string.Empty;
         _phone = string.Empty;
-        _surname = string.Empty;
-        this.cv = new CV();
+        _age = 0;
         _email = string.Empty;
-    }
-
-    public override string ToString()
-    {
-        return $"{Name} {Surname} {Age} {Sheher} {Phone}" + cv.ToString();
+        vacancies = new List<Vacancie>();
     }
 }
