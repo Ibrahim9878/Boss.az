@@ -38,9 +38,9 @@ public class Vacancie
     }
     public Vacancie(string name, string information, string requirement, int salary, int workingTime)
     {
-        _name = name;
-        _information = information;
-        _requirement = requirement;
+        Name = name;
+        Information = information;
+        Requirement = requirement;
         this.salary = salary;
         WorkingTime = workingTime;
     }

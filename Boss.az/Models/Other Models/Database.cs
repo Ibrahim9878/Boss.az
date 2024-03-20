@@ -22,7 +22,7 @@ public static class Database
             Console.WriteLine(item);
         }
     }
-    public static void ShowVacncies()
+    public static void ShowVacancies()
     {
         foreach (var item in vacancies)
         {
@@ -56,5 +56,37 @@ public static class Database
 
         Console.WriteLine("Employers have been successfully written to employers.json.");
     }
-    
+    public static void WriteVacanciesToJson()
+    {
+        JsonSerializerOptions options = new JsonSerializerOptions
+        {
+            WriteIndented = true
+        };
+
+        string jsonString = JsonSerializer.Serialize(vacancies, options);
+
+        File.WriteAllText("vacancies.json", jsonString);
+
+        Console.WriteLine("Vacancies have been successfully written to vacancies.json.");
+    }
+
+    public static void ReadWorkersFromJson()
+    {
+        string jsonstring = "";
+        jsonstring = File.ReadAllText("workers.json");
+        workers = JsonSerializer.Deserialize<List<Worker>>(jsonstring);
+    }
+    public static void ReadEmployersFromJson()
+    {
+        string jsonstring = "";
+        jsonstring = File.ReadAllText("employers.json");
+        employers = JsonSerializer.Deserialize<List<Employer>>(jsonstring);
+    }
+    public static void ReadVacanciesFromJson()
+    {
+        string jsonstring = "";
+        jsonstring = File.ReadAllText("vacancies.json");
+        vacancies = JsonSerializer.Deserialize<List<Vacancie>>(jsonstring);
+    }
+
 }

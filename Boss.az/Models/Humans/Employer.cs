@@ -36,7 +36,7 @@ public class Employer
     public string Phone
     {
         get { return _phone; }
-        set { if (Regex.IsMatch(value, "^\\+994(\\s?\\d){9}$\r\n")) _phone = value; else throw new Exception("phone number is wrong"); }
+        set { if (Regex.IsMatch(value, "^\\+994(\\s?\\d){9}$")) _phone = value; else throw new Exception("phone number is wrong"); }
     }
     private int _age;
 
@@ -51,7 +51,7 @@ public class Employer
     public string Email
     {
         get { return _email; }
-        set { if (Regex.IsMatch(value, "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b\r\n")) _email = value; else throw new Exception("Email is wrong"); }
+        set { if (Regex.IsMatch(value, "\\b[A-Za-z0-9._%+-]+@gmail\\.com\\b")) _email = value; else throw new Exception("Email is wrong"); }
     }
 
     public List<Vacancie> vacancies { get; set; }
@@ -59,12 +59,12 @@ public class Employer
     public Employer(string name, string surname, string sheher, string phone, int age, string email, List<Vacancie> vacancies)
     {
         id = Guid.NewGuid(); 
-        _name = name;
-        _surname = surname;
-        _sheher = sheher;
-        _phone = phone;
-        _age = age;
-        _email = email;
+        Name = name;
+        Surname = surname;
+        Sheher = sheher;
+        Phone = phone;
+        Age = age;
+        Email = email;
         this.vacancies = vacancies;
     }
 

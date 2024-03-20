@@ -41,11 +41,11 @@ public class CV
 
     public CV(string profession,  string school, string skills, List<string> companies, int languageCount, bool hasCertification, DateTime date1, DateTime date2, Dictionary<char,int> levelOfLanguage)
     {
-        _profession = profession;
-        _school = school;
-        _skills = skills;
+        Profession = profession;
+        School = school;
+        Skills = skills;
         Companies = companies;
-        _languageCount = languageCount;
+        LanguageCount = languageCount;
         HasCertification = hasCertification; 
         StartDateTime = date1;
         EndDateTime = date2;

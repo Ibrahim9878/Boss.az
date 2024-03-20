@@ -17,6 +17,7 @@ try
     Database.employers.Add(employer);
     Database.employers.Add(employer2);
     Database.WriteEmployersToJson();
+    Database.WriteVacanciesToJson();
 }
 catch(Exception ex)
 {
